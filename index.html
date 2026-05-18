@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>당연 — 당신의 연금을 당연하게</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --mint: #1EC9AF;
+  --mint-deep: #0FA18F;
+  --mint-light: #E8FAF6;
+  --mint-pale: #F0FDFB;
+  --charcoal: #1A1A1A;
+  --gray-700: #3D3D3D;
+  --gray-500: #767676;
+  --gray-400: #9E9E9E;
+  --gray-200: #E0E0E0;
+  --gray-100: #F5F5F5;
+  --gray-50: #FAFAFA;
+  --white: #FFFFFF;
+  --blue-light: #F0F6FF;
+  --font: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --nav-h: 64px;
+  --max-w: 1160px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow-card: 0 2px 16px rgba(0,0,0,0.07);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+body {
+  font-family: var(--font);
+  color: var(--charcoal);
+  background: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ======= NAV ======= */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: var(--nav-h);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-200);
+}
+.nav-inner {
+  max-width: var(--max-w); margin: 0 auto; padding: 0 32px;
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+.logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.logo-mark {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: var(--mint);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; color: white;
+}
+.logo-text { font-size: 17px; font-weight: 800; color: var(--charcoal); letter-spacing: -0.5px; }
+.logo-text span { color: var(--mint); }
+
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--gray-700);
+  text-decoration: none; transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--mint); }
+
+.nav-right { display: flex; align-items: center; gap: 8px; }
+.btn-text {
+  padding: 8px 16px; font-size: 14px; font-weight: 500;
+  color: var(--gray-700); text-decoration: none; border-radius: 8px;
+  transition: background 0.15s; border: none; background: none;
+  cursor: pointer; font-family: var(--font);
+}
+.btn-text:hover { background: var(--gray-100); }
+.btn-primary {
+  padding: 9px 20px; font-size: 14px; font-weight: 700;
+  color: white; background: var(--charcoal); border-radius: 8px;
+  text-decoration: none; border: none; cursor: pointer; font-family: var(--font);
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: var(--gray-700); }
+.btn-mint {
+  padding: 9px 20px; font-size: 14px; font-weight: 700;
+  color: white; background: var(--mint); border-radius: 8px;
+  text-decoration: none; border: none; cursor: pointer; font-family: var(--font);
+  transition: background 0.15s;
+}
+.btn-mint:hover { background: var(--mint-deep); }
+
+/* ======= LAYOUT ======= */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+
+/* ======= HERO SLIDER ======= */
+.hero {
+  margin-top: var(--nav-h);
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.hero-slides { display: flex; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+
+.hero-slide {
+  min-width: 100%; height: 480px;
+  display: flex; align-items: center;
+  padding: 0 calc((100% - var(--max-w)) / 2 + 32px);
+  position: relative; overflow: hidden;
+}
+
+.slide-0 { background: #F4F9FF; }
+.slide-1 { background: var(--mint-light); }
+.slide-2 { background: #FFF8F0; }
+
+.slide-content { max-width: 480px; z-index: 1; }
+.slide-eyebrow {
+  display: inline-block; font-size: 12px; font-weight: 700;
+  color: var(--mint); letter-spacing: 0.5px; margin-bottom: 16px;
+  background: rgba(30,201,175,0.1); padding: 4px 12px; border-radius: 100px;
+}
+.slide-title {
+  font-size: 36px; font-weight: 800; line-height: 1.2;
+  letter-spacing: -1.5px; color: var(--charcoal); margin-bottom: 16px;
+}
+.slide-desc { font-size: 16px; line-height: 1.7; color: var(--gray-500); margin-bottom: 28px; }
+.slide-actions { display: flex; gap: 10px; align-items: center; }
+.btn-slide-primary {
+  padding: 12px 24px; font-size: 14px; font-weight: 700;
+  color: white; background: var(--charcoal); border-radius: 10px;
+  text-decoration: none; border: none; cursor: pointer; font-family: var(--font);
+  transition: background 0.15s;
+}
+.btn-slide-primary:hover { background: var(--gray-700); }
+.btn-slide-ghost {
+  padding: 11px 22px; font-size: 14px; font-weight: 600;
+  color: var(--gray-700); background: white; border-radius: 10px;
+  text-decoration: none; border: 1px solid var(--gray-200); cursor: pointer;
+  font-family: var(--font); transition: border-color 0.15s;
+}
+.btn-slide-ghost:hover { border-color: var(--gray-400); }
+
+/* Slide visual */
+.slide-visual {
+  position: absolute; right: calc((100% - var(--max-w)) / 2 + 32px);
+  top: 50%; transform: translateY(-50%);
+  width: 420px;
+}
+
+/* Hero nav dots */
+.hero-nav {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px; align-items: center;
+}
+.hero-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gray-300, #C8C8C8); cursor: pointer;
+  transition: all 0.3s; border: none;
+}
+.hero-dot.active { width: 24px; border-radius: 3px; background: var(--charcoal); }
+
+/* Hero arrows */
+.hero-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; border-radius: 50%;
+  background: white; border: 1px solid var(--gray-200);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.15s; z-index: 10; font-size: 16px;
+}
+.hero-arrow:hover { border-color: var(--gray-400); box-shadow: var(--shadow-card); }
+.hero-arrow-prev { left: 24px; }
+.hero-arrow-next { right: 24px; }
+
+/* ======= LOGO MARQUEE ======= */
+.marquee-section {
+  padding: 28px 0; border-bottom: 1px solid var(--gray-200);
+  overflow: hidden; position: relative;
+}
+.marquee-inner {
+  display: flex; gap: 64px; align-items: center;
+  animation: marqueeScroll 20s linear infinite;
+  width: max-content;
+}
+.marquee-inner:hover { animation-play-state: paused; }
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-logo {
+  font-size: 14px; font-weight: 700; color: #C0C0C0;
+  white-space: nowrap; letter-spacing: -0.3px;
+}
+
+/* ======= SECTION BASE ======= */
+section { padding: 100px 32px; }
+.section-header { margin-bottom: 56px; }
+.eyebrow {
+  font-size: 13px; font-weight: 700; color: var(--mint);
+  letter-spacing: 0.3px; margin-bottom: 12px; display: block;
+}
+.section-title {
+  font-size: 40px; font-weight: 800; letter-spacing: -1.5px;
+  line-height: 1.2; color: var(--charcoal); margin-bottom: 14px;
+}
+.section-desc { font-size: 17px; line-height: 1.7; color: var(--gray-500); }
+
+/* ======= PRODUCT CARDS GRID (Works 스타일) ======= */
+.products-section { background: var(--white); }
+
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+/* Big card */
+.product-card {
+  border-radius: var(--radius-lg); overflow: hidden;
+  background: var(--gray-50); border: 1px solid var(--gray-200);
+  padding: 40px 40px 0; position: relative;
+  transition: box-shadow 0.25s, transform 0.25s;
+  cursor: pointer; display: flex; flex-direction: column;
+}
+.product-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.product-card.span-2 { grid-column: 1 / 3; }
+
+.product-card-tag {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  color: var(--mint-deep); background: rgba(30,201,175,0.1);
+  padding: 4px 10px; border-radius: 6px; margin-bottom: 16px;
+  letter-spacing: 0.3px;
+}
+.product-card-title {
+  font-size: 22px; font-weight: 800; letter-spacing: -0.8px;
+  color: var(--charcoal); margin-bottom: 8px;
+}
+.product-card-desc { font-size: 14px; line-height: 1.65; color: var(--gray-500); margin-bottom: 24px; }
+.product-card-link {
+  font-size: 13px; font-weight: 700; color: var(--charcoal);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+  transition: gap 0.15s;
+}
+.product-card-link:hover { gap: 8px; color: var(--mint); }
+
+.card-visual {
+  margin-top: auto; border-radius: 12px 12px 0 0;
+  overflow: hidden; height: 200px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Mock app UI */
+.mock-app {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  background: white; border: 1px solid var(--gray-200);
+  border-bottom: none; border-radius: 12px 12px 0 0;
+  overflow: hidden;
+}
+.mock-topbar {
+  background: var(--charcoal); padding: 10px 16px;
+  display: flex; align-items: center; gap: 6px;
+}
+.mock-dot { width: 8px; height: 8px; border-radius: 50%; }
+.mock-body { flex: 1; padding: 16px; display: flex; gap: 10px; }
+.mock-sidebar {
+  width: 120px; background: var(--gray-50);
+  border-radius: 8px; padding: 10px;
+  border: 1px solid var(--gray-200);
+}
+.mock-sidebar-item {
+  height: 8px; border-radius: 4px; background: var(--gray-200);
+  margin-bottom: 8px;
+}
+.mock-sidebar-item.active { background: var(--mint); }
+.mock-main { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.mock-row {
+  height: 36px; border-radius: 8px; background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  display: flex; align-items: center; padding: 0 12px; gap: 8px;
+}
+.mock-row.highlight { background: rgba(30,201,175,0.08); border-color: rgba(30,201,175,0.2); }
+.mock-row-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); }
+.mock-row-line { flex: 1; height: 6px; border-radius: 3px; background: var(--gray-200); }
+.mock-row-val { font-size: 11px; font-weight: 700; color: var(--mint); }
+
+/* Portfolio mini visual */
+.mini-portfolio {
+  width: 100%; padding: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.port-header { display: flex; justify-content: space-between; align-items: baseline; }
+.port-title { font-size: 11px; font-weight: 600; color: var(--gray-400); }
+.port-val { font-size: 20px; font-weight: 800; color: var(--charcoal); letter-spacing: -0.5px; }
+.port-change { font-size: 12px; font-weight: 700; color: var(--mint); }
+.port-bars { display: flex; gap: 3px; align-items: flex-end; height: 48px; }
+.port-bar { flex: 1; border-radius: 3px 3px 0 0; background: var(--gray-200); }
+.port-bar.m { background: var(--mint); }
+.port-bar.m2 { background: rgba(30,201,175,0.4); }
+.port-alloc { display: flex; gap: 6px; }
+.alloc-chip {
+  flex: 1; padding: 6px 8px; border-radius: 8px;
+  background: var(--gray-50); border: 1px solid var(--gray-200);
+  text-align: center;
+}
+.alloc-chip-pct { font-size: 13px; font-weight: 800; color: var(--charcoal); }
+.alloc-chip-name { font-size: 10px; color: var(--gray-400); display: block; margin-top: 1px; }
+
+/* ======= PLATFORM SECTION ======= */
+.platform-section {
+  background: #F0F4F8;
+  text-align: center; padding: 100px 32px;
+}
+.platform-inner { max-width: 800px; margin: 0 auto; }
+.platform-visual {
+  margin: 56px auto 0;
+  max-width: 600px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.platform-row { display: flex; gap: 12px; justify-content: center; }
+.platform-chip {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 20px; border-radius: 100px;
+  background: white; border: 1px solid var(--gray-200);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-size: 14px; font-weight: 600; color: var(--charcoal);
+  white-space: nowrap; transition: all 0.2s;
+}
+.platform-chip:hover { box-shadow: var(--shadow-card); transform: translateY(-2px); }
+.chip-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+  background: var(--mint-light);
+}
+
+/* ======= SOLUTIONS ======= */
+.solutions-section { background: var(--charcoal); padding: 100px 32px; }
+.solutions-section .eyebrow { color: var(--mint); }
+.solutions-section .section-title { color: white; }
+.solutions-section .section-desc { color: rgba(255,255,255,0.5); }
+
+.solution-slider-wrap { position: relative; margin-top: 48px; }
+.solution-slides {
+  display: flex; gap: 16px;
+  overflow-x: hidden; scroll-behavior: smooth;
+}
+.solution-card {
+  min-width: 260px; border-radius: var(--radius);
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+  padding: 28px 24px; cursor: pointer; text-decoration: none;
+  transition: all 0.25s; flex-shrink: 0;
+}
+.solution-card:hover {
+  background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.14);
+  transform: translateY(-4px);
+}
+.solution-card-img {
+  width: 100%; height: 140px; border-radius: 10px;
+  background: rgba(255,255,255,0.05); margin-bottom: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+}
+.solution-card-label {
+  font-size: 12px; font-weight: 600; color: var(--mint);
+  margin-bottom: 6px; letter-spacing: 0.3px;
+}
+.solution-card-title { font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px; }
+.solution-card-desc { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.45); }
+
+.slider-nav { display: flex; gap: 8px; margin-top: 28px; justify-content: flex-end; }
+.slider-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 14px; color: white; transition: all 0.15s;
+}
+.slider-btn:hover { background: rgba(255,255,255,0.15); }
+
+/* ======= STATS ======= */
+.stats-section { background: var(--charcoal); padding: 0 32px 80px; border-top: 1px solid rgba(255,255,255,0.06); }
+.stats-grid {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  padding: 48px 0; gap: 0;
+}
+.stat-item {
+  padding: 0 32px; border-right: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+}
+.stat-item:first-child { padding-left: 0; }
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-size: 52px; font-weight: 800; color: white;
+  letter-spacing: -2px; line-height: 1; margin-bottom: 8px;
+}
+.stat-num span { color: var(--mint); }
+.stat-label { font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 500; }
+.stat-source { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 4px; }
+
+/* ======= NEWS SECTION ======= */
+.news-section { background: white; padding: 80px 32px; }
+.news-inner { max-width: var(--max-w); margin: 0 auto; }
+.news-header {
+  display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px;
+}
+.news-title { font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+.view-all {
+  font-size: 13px; font-weight: 600; color: var(--gray-500);
+  text-decoration: none; display: flex; align-items: center; gap: 4px;
+  transition: color 0.15s;
+}
+.view-all:hover { color: var(--charcoal); }
+
+.news-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--gray-200); margin-bottom: 28px; }
+.news-tab {
+  padding: 12px 20px; font-size: 14px; font-weight: 600;
+  color: var(--gray-400); border: none; background: none;
+  cursor: pointer; font-family: var(--font); border-bottom: 2px solid transparent;
+  transition: all 0.15s; margin-bottom: -1px;
+}
+.news-tab.active { color: var(--charcoal); border-bottom-color: var(--charcoal); }
+
+.news-list { display: flex; flex-direction: column; gap: 0; }
+.news-item {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 18px 0; border-bottom: 1px solid var(--gray-100);
+  cursor: pointer; text-decoration: none; transition: background 0.1s;
+  gap: 24px;
+}
+.news-item:hover .news-item-title { color: var(--mint); }
+.news-item-type { font-size: 12px; font-weight: 700; color: var(--mint); min-width: 48px; margin-top: 2px; }
+.news-item-body { flex: 1; }
+.news-item-title { font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 4px; transition: color 0.15s; }
+.news-item-desc { font-size: 13px; color: var(--gray-400); line-height: 1.5; }
+.news-item-date { font-size: 12px; color: var(--gray-400); white-space: nowrap; margin-top: 2px; }
+
+/* Blog cards */
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.blog-card {
+  border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--gray-200); background: var(--gray-50);
+  text-decoration: none; cursor: pointer; transition: all 0.2s;
+}
+.blog-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+.blog-card-img {
+  width: 100%; height: 160px;
+  background: linear-gradient(135deg, var(--mint-light) 0%, var(--blue-light) 100%);
+  display: flex; align-items: center; justify-content: center; font-size: 40px;
+}
+.blog-card-body { padding: 20px; }
+.blog-card-tag { font-size: 11px; font-weight: 700; color: var(--mint); margin-bottom: 8px; }
+.blog-card-title { font-size: 15px; font-weight: 700; color: var(--charcoal); line-height: 1.5; margin-bottom: 6px; }
+.blog-card-date { font-size: 12px; color: var(--gray-400); }
+
+/* ======= CONTACT SECTION ======= */
+.contact-section { background: var(--gray-50); padding: 80px 32px; border-top: 1px solid var(--gray-200); }
+.contact-inner { max-width: var(--max-w); margin: 0 auto; }
+.contact-title { font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 32px; }
+.contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.contact-card {
+  background: white; border: 1px solid var(--gray-200); border-radius: var(--radius);
+  padding: 28px 24px; text-decoration: none; text-align: center;
+  transition: all 0.2s; cursor: pointer;
+}
+.contact-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); border-color: var(--mint); }
+.contact-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+.contact-label { font-size: 14px; font-weight: 700; color: var(--charcoal); }
+
+/* ======= CTA SECTION ======= */
+.cta-section {
+  background: var(--mint);
+  padding: 80px 32px; text-align: center;
+}
+.cta-inner { max-width: 700px; margin: 0 auto; }
+.cta-title {
+  font-size: 40px; font-weight: 800; letter-spacing: -1.5px;
+  line-height: 1.15; color: white; margin-bottom: 16px;
+}
+.cta-desc { font-size: 17px; color: rgba(255,255,255,0.8); margin-bottom: 36px; }
+.cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-cta-white {
+  padding: 14px 32px; font-size: 15px; font-weight: 700;
+  color: var(--mint-deep); background: white; border-radius: 10px;
+  text-decoration: none; border: none; cursor: pointer; font-family: var(--font);
+  transition: all 0.15s;
+}
+.btn-cta-white:hover { background: rgba(255,255,255,0.9); transform: translateY(-1px); }
+.btn-cta-outline {
+  padding: 13px 30px; font-size: 15px; font-weight: 700;
+  color: white; background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.4); border-radius: 10px;
+  text-decoration: none; cursor: pointer; font-family: var(--font);
+  transition: all 0.15s;
+}
+.btn-cta-outline:hover { background: rgba(255,255,255,0.22); }
+
+/* ======= FOOTER ======= */
+footer { background: #111111; padding: 56px 32px 40px; }
+.footer-inner { max-width: var(--max-w); margin: 0 auto; }
+.footer-top {
+  display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr;
+  gap: 48px; padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 32px;
+}
+.footer-brand-name { font-size: 16px; font-weight: 800; color: white; margin-bottom: 12px; letter-spacing: -0.3px; }
+.footer-brand-name span { color: var(--mint); }
+.footer-brand-desc { font-size: 13px; color: rgba(255,255,255,0.3); line-height: 1.8; }
+.footer-col-title { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.4); margin-bottom: 16px; letter-spacing: 0.3px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.15s; }
+.footer-links a:hover { color: var(--mint); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.footer-legal { font-size: 12px; color: rgba(255,255,255,0.2); line-height: 1.8; }
+.footer-legal a { color: rgba(255,255,255,0.25); text-decoration: none; }
+
+/* ======= FAQ ======= */
+.faq-section { padding: 80px 32px; background: white; }
+.faq-inner { max-width: 760px; margin: 0 auto; }
+.faq-title { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+.faq-sub { font-size: 16px; color: var(--gray-500); margin-bottom: 40px; }
+.faq-item {
+  border-bottom: 1px solid var(--gray-200);
+  overflow: hidden;
+}
+.faq-q {
+  padding: 20px 0; font-size: 15px; font-weight: 600; color: var(--charcoal);
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  border: none; background: none; width: 100%; text-align: left; font-family: var(--font);
+}
+.faq-q::after {
+  content: '+'; font-size: 22px; font-weight: 300; color: var(--gray-400); flex-shrink: 0;
+  transition: transform 0.25s;
+}
+.faq-item.open .faq-q::after { transform: rotate(45deg); color: var(--mint); }
+.faq-a { display: none; padding-bottom: 20px; font-size: 14px; line-height: 1.75; color: var(--gray-500); }
+.faq-item.open .faq-a { display: block; }
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 1024px) {
+  .hero-slide { padding: 0 24px; }
+  .slide-visual { display: none; }
+  .products-grid { grid-template-columns: 1fr; }
+  .product-card.span-2 { grid-column: 1; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .stat-item { border-right: none; padding: 16px; }
+  .blog-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .slide-title { font-size: 28px; }
+  .section-title { font-size: 30px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr 1fr; }
+  .cta-title { font-size: 30px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">당</div>
+      <span class="logo-text">당<span>연</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#products">서비스 소개</a></li>
+      <li><a href="#solutions">이용 방법</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#news">뉴스</a></li>
+      <li><a href="#contact">고객 지원</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-text">로그인</button>
+      <a href="#" class="btn-mint">앱 다운로드</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<div class="hero" id="hero">
+  <div class="hero-slides" id="heroSlides">
+
+    <!-- Slide 1 -->
+    <div class="hero-slide slide-0">
+      <div class="slide-content">
+        <span class="slide-eyebrow">AI 연금 투자자문 서비스</span>
+        <h1 class="slide-title">어려운 연금관리,<br>이제 AI에게 맡기세요</h1>
+        <p class="slide-desc">EMP 섀넌 AI가 4주마다 최적의 포트폴리오로<br>자동 리밸런싱해 드립니다.</p>
+        <div class="slide-actions">
+          <a href="#" class="btn-slide-primary">무료로 시작하기</a>
+          <a href="#products" class="btn-slide-ghost">서비스 소개 보기</a>
+        </div>
+      </div>
+      <div class="slide-visual">
+        <div style="background:white; border-radius:20px; padding:24px; box-shadow:0 16px 48px rgba(0,0,0,0.1); border:1px solid var(--gray-200);">
+          <div style="font-size:11px; color:var(--gray-400); font-weight:600; margin-bottom:6px;">내 연금 총 평가금액</div>
+          <div style="font-size:32px; font-weight:800; letter-spacing:-1.5px; color:var(--charcoal); margin-bottom:4px;">₩24,381,200</div>
+          <div style="font-size:13px; color:var(--mint); font-weight:600; margin-bottom:20px;">↑ +₩184,200 (+0.76%)</div>
+          <div style="display:flex; gap:4px; align-items:flex-end; height:56px; margin-bottom:16px;">
+            <div style="flex:1; height:35%; border-radius:3px 3px 0 0; background:var(--gray-200);"></div>
+            <div style="flex:1; height:50%; border-radius:3px 3px 0 0; background:var(--gray-200);"></div>
+            <div style="flex:1; height:42%; border-radius:3px 3px 0 0; background:var(--gray-200);"></div>
+            <div style="flex:1; height:65%; border-radius:3px 3px 0 0; background:var(--gray-200);"></div>
+            <div style="flex:1; height:55%; border-radius:3px 3px 0 0; background:var(--gray-200);"></div>
+            <div style="flex:1; height:70%; border-radius:3px 3px 0 0; background:var(--gray-200);"></div>
+            <div style="flex:1; height:62%; border-radius:3px 3px 0 0; background:var(--gray-200);"></div>
+            <div style="flex:1; height:85%; border-radius:3px 3px 0 0; background:var(--mint);"></div>
+          </div>
+          <div style="background:rgba(30,201,175,0.08); border:1px solid rgba(30,201,175,0.15); border-radius:10px; padding:12px 14px; display:flex; align-items:center; gap:10px;">
+            <div style="width:28px; height:28px; border-radius:8px; background:var(--mint); display:flex; align-items:center; justify-content:center; font-size:12px; color:white; font-weight:800; flex-shrink:0;">♻</div>
+            <div>
+              <div style="font-size:12px; font-weight:700; color:var(--charcoal);">AI 리밸런싱 제안 도착</div>
+              <div style="font-size:11px; color:var(--gray-400);">4주 주기 최적화 완료</div>
+            </div>
+            <div style="margin-left:auto; background:var(--mint); color:white; font-size:11px; font-weight:800; padding:5px 10px; border-radius:6px; white-space:nowrap;">수락하기</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="hero-slide slide-1">
+      <div class="slide-content">
+        <span class="slide-eyebrow">EMP 섀넌 AI 기술</span>
+        <h1 class="slide-title">알파고와 같은<br>강화학습 AI가<br>투자를 결정합니다</h1>
+        <p class="slide-desc">과거 경험을 바탕으로 현재 상황에서<br>최적의 행동을 선택하는 AI 기술</p>
+        <div class="slide-actions">
+          <a href="#" class="btn-slide-primary">AI 기술 알아보기</a>
+        </div>
+      </div>
+      <div class="slide-visual">
+        <div style="background:white; border-radius:20px; padding:24px; box-shadow:0 16px 48px rgba(0,0,0,0.1);">
+          <div style="font-size:12px; font-weight:700; color:var(--gray-400); margin-bottom:16px;">자산 배분 최적화</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:8px; height:8px; border-radius:50%; background:var(--mint); flex-shrink:0;"></div>
+              <div style="font-size:13px; color:var(--charcoal); flex:1;">국내외 주식 ETF</div>
+              <div style="flex:2; height:6px; background:var(--gray-100); border-radius:3px;">
+                <div style="width:65%; height:100%; background:var(--mint); border-radius:3px;"></div>
+              </div>
+              <div style="font-size:13px; font-weight:700; color:var(--charcoal); min-width:28px;">65%</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:8px; height:8px; border-radius:50%; background:#A7F1E7; flex-shrink:0;"></div>
+              <div style="font-size:13px; color:var(--charcoal); flex:1;">채권 ETF</div>
+              <div style="flex:2; height:6px; background:var(--gray-100); border-radius:3px;">
+                <div style="width:25%; height:100%; background:#A7F1E7; border-radius:3px;"></div>
+              </div>
+              <div style="font-size:13px; font-weight:700; color:var(--charcoal); min-width:28px;">25%</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:8px; height:8px; border-radius:50%; background:var(--gray-300,#ccc); flex-shrink:0;"></div>
+              <div style="font-size:13px; color:var(--charcoal); flex:1;">대안자산</div>
+              <div style="flex:2; height:6px; background:var(--gray-100); border-radius:3px;">
+                <div style="width:10%; height:100%; background:#ccc; border-radius:3px;"></div>
+              </div>
+              <div style="font-size:13px; font-weight:700; color:var(--charcoal); min-width:28px;">10%</div>
+            </div>
+          </div>
+          <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--gray-200); display:flex; justify-content:space-between;">
+            <div style="text-align:center;">
+              <div style="font-size:20px; font-weight:800; color:var(--mint);">+8.4%</div>
+              <div style="font-size:11px; color:var(--gray-400);">연환산 수익률</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:20px; font-weight:800; color:var(--charcoal);">4주</div>
+              <div style="font-size:11px; color:var(--gray-400);">리밸런싱 주기</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:20px; font-weight:800; color:var(--charcoal);">0.015%</div>
+              <div style="font-size:11px; color:var(--gray-400);">자문 수수료</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="hero-slide slide-2">
+      <div class="slide-content">
+        <span class="slide-eyebrow">간편 시작</span>
+        <h1 class="slide-title">3분이면<br>연금 투자를<br>시작할 수 있어요</h1>
+        <p class="slide-desc">복잡한 서류 없이 앱에서 바로<br>KB증권 연금저축 계좌를 개설하세요.</p>
+        <div class="slide-actions">
+          <a href="#" class="btn-slide-primary">앱 다운로드</a>
+          <a href="#solutions" class="btn-slide-ghost">이용 방법 보기</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hero-slides -->
+
+  <button class="hero-arrow hero-arrow-prev" onclick="slideHero(-1)">←</button>
+  <button class="hero-arrow hero-arrow-next" onclick="slideHero(1)">→</button>
+  <div class="hero-nav" id="heroDots">
+    <button class="hero-dot active" onclick="goSlide(0)"></button>
+    <button class="hero-dot" onclick="goSlide(1)"></button>
+    <button class="hero-dot" onclick="goSlide(2)"></button>
+  </div>
+</div>
+
+<!-- LOGO MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-inner" id="marquee">
+    <span class="marquee-logo">KB증권</span>
+    <span class="marquee-logo">딥트레이드테크놀로지스</span>
+    <span class="marquee-logo">투자자문업 등록</span>
+    <span class="marquee-logo">금융감독원 관리감독</span>
+    <span class="marquee-logo">연금저축펀드</span>
+    <span class="marquee-logo">EMP 섀넌 AI</span>
+    <span class="marquee-logo">KB증권</span>
+    <span class="marquee-logo">딥트레이드테크놀로지스</span>
+    <span class="marquee-logo">투자자문업 등록</span>
+    <span class="marquee-logo">금융감독원 관리감독</span>
+    <span class="marquee-logo">연금저축펀드</span>
+    <span class="marquee-logo">EMP 섀넌 AI</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">당연의 핵심 서비스</span>
+      <h2 class="section-title">스마트한 연금 관리의<br>모든 것을 담았습니다.</h2>
+    </div>
+    <div class="products-grid">
+
+      <!-- Card 1: Main big card -->
+      <div class="product-card span-2" style="background:#F0FDFB; min-height:340px;">
+        <span class="product-card-tag">AI 투자자문</span>
+        <h3 class="product-card-title">AI가 알아서 최적의 포트폴리오로<br>자동 리밸런싱해 드립니다</h3>
+        <p class="product-card-desc">메일부터 메시지, EMP 섀넌 강화학습 AI가 4주마다 시장을 분석하고<br>고객 투자 성향에 맞게 포트폴리오를 최적화합니다.</p>
+        <a href="#" class="product-card-link">자세히 보기 →</a>
+        <div class="card-visual" style="height:180px;">
+          <div class="mock-app" style="border:none; background:transparent;">
+            <div style="display:flex; gap:10px; padding:0 0 8px;">
+              <div style="flex:1; background:white; border-radius:10px; padding:14px; border:1px solid var(--gray-200);">
+                <div style="font-size:10px; color:var(--gray-400); font-weight:600; margin-bottom:6px;">KODEX 미국S&amp;P500</div>
+                <div style="font-size:18px; font-weight:800; color:var(--charcoal); letter-spacing:-0.5px;">65%</div>
+                <div style="font-size:11px; color:var(--mint); font-weight:600;">+12.3%</div>
+                <div style="height:4px; background:var(--gray-100); border-radius:2px; margin-top:8px;">
+                  <div style="width:65%; height:100%; background:var(--mint); border-radius:2px;"></div>
+                </div>
+              </div>
+              <div style="flex:1; background:white; border-radius:10px; padding:14px; border:1px solid var(--gray-200);">
+                <div style="font-size:10px; color:var(--gray-400); font-weight:600; margin-bottom:6px;">TIGER 국채3년</div>
+                <div style="font-size:18px; font-weight:800; color:var(--charcoal); letter-spacing:-0.5px;">25%</div>
+                <div style="font-size:11px; color:var(--mint); font-weight:600;">+2.1%</div>
+                <div style="height:4px; background:var(--gray-100); border-radius:2px; margin-top:8px;">
+                  <div style="width:25%; height:100%; background:#A7F1E7; border-radius:2px;"></div>
+                </div>
+              </div>
+              <div style="flex:1; background:white; border-radius:10px; padding:14px; border:1px solid var(--gray-200);">
+                <div style="font-size:10px; color:var(--gray-400); font-weight:600; margin-bottom:6px;">KODEX 골드선물</div>
+                <div style="font-size:18px; font-weight:800; color:var(--charcoal); letter-spacing:-0.5px;">10%</div>
+                <div style="font-size:11px; color:#FF6B6B; font-weight:600;">-0.8%</div>
+                <div style="height:4px; background:var(--gray-100); border-radius:2px; margin-top:8px;">
+                  <div style="width:10%; height:100%; background:#FFB5B5; border-radius:2px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="product-card" style="background:#F4F9FF;">
+        <span class="product-card-tag">간편 가입</span>
+        <h3 class="product-card-title">3분 만에<br>계좌 개설 완료</h3>
+        <p class="product-card-desc">서류 없이 앱에서 바로 KB증권 연금저축 계좌를 개설하고 투자를 시작하세요.</p>
+        <a href="#" class="product-card-link">앱 다운로드 →</a>
+        <div class="card-visual" style="background:transparent; height:140px; align-items:flex-end;">
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <div style="background:white; border-radius:10px; padding:12px 14px; border:1px solid var(--gray-200); display:flex; align-items:center; gap:10px;">
+              <div style="width:20px; height:20px; border-radius:50%; background:var(--mint); display:flex; align-items:center; justify-content:center; font-size:10px; color:white; font-weight:800; flex-shrink:0;">✓</div>
+              <span style="font-size:13px; font-weight:600; color:var(--charcoal);">본인인증 완료</span>
+            </div>
+            <div style="background:white; border-radius:10px; padding:12px 14px; border:1px solid var(--gray-200); display:flex; align-items:center; gap:10px;">
+              <div style="width:20px; height:20px; border-radius:50%; background:var(--mint); display:flex; align-items:center; justify-content:center; font-size:10px; color:white; font-weight:800; flex-shrink:0;">✓</div>
+              <span style="font-size:13px; font-weight:600; color:var(--charcoal);">계좌 개설 완료</span>
+            </div>
+            <div style="background:var(--mint); border-radius:10px; padding:12px 14px; display:flex; align-items:center; justify-content:center;">
+              <span style="font-size:13px; font-weight:700; color:white;">투자 시작하기 →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="product-card" style="background:#F9F4FF;">
+        <span class="product-card-tag">안정적 수익</span>
+        <h3 class="product-card-title">시장이 흔들려도<br>AI가 지켜냅니다</h3>
+        <p class="product-card-desc">안정성에 초점을 맞춰 시장 변동성에 흔들리지 않는 포트폴리오를 유지합니다.</p>
+        <a href="#" class="product-card-link">수익률 보기 →</a>
+        <div class="card-visual" style="background:transparent; height:140px; align-items:flex-end;">
+          <div style="width:100%; background:white; border-radius:12px; padding:14px; border:1px solid var(--gray-200);">
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+              <span style="font-size:11px; color:var(--gray-400); font-weight:600;">연환산 수익률</span>
+              <span style="font-size:16px; font-weight:800; color:var(--mint);">+8.4%</span>
+            </div>
+            <div style="display:flex; gap:3px; align-items:flex-end; height:36px;">
+              <div style="flex:1; height:40%; border-radius:2px 2px 0 0; background:var(--gray-200);"></div>
+              <div style="flex:1; height:55%; border-radius:2px 2px 0 0; background:var(--gray-200);"></div>
+              <div style="flex:1; height:48%; border-radius:2px 2px 0 0; background:var(--gray-200);"></div>
+              <div style="flex:1; height:70%; border-radius:2px 2px 0 0; background:var(--gray-200);"></div>
+              <div style="flex:1; height:60%; border-radius:2px 2px 0 0; background:var(--gray-200);"></div>
+              <div style="flex:1; height:85%; border-radius:2px 2px 0 0; background:var(--mint);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="platform-section" id="solutions">
+  <div class="platform-inner">
+    <span class="eyebrow" style="display:block; text-align:center;">이용 방법</span>
+    <h2 class="section-title" style="text-align:center;">딱 4단계,<br>당연이 나머지를 합니다.</h2>
+    <p class="section-desc" style="text-align:center; margin:0 auto;">복잡한 절차 없이 누구나 쉽게 AI 연금 관리를 시작할 수 있습니다.</p>
+    <div class="platform-visual">
+      <div class="platform-row">
+        <div class="platform-chip">
+          <div class="chip-icon">📲</div>
+          1. 앱 다운로드
+        </div>
+        <div class="platform-chip">
+          <div class="chip-icon">🏦</div>
+          2. 계좌 연결
+        </div>
+      </div>
+      <div class="platform-row">
+        <div class="platform-chip">
+          <div class="chip-icon">🎯</div>
+          3. 성향 분석
+        </div>
+        <div class="platform-chip">
+          <div class="chip-icon">🤖</div>
+          4. AI 자동 관리
+        </div>
+      </div>
+      <div class="platform-row">
+        <div class="platform-chip" style="background:var(--mint); border-color:var(--mint-deep); color:white; padding:14px 32px;">
+          <div class="chip-icon" style="background:rgba(255,255,255,0.2);">✓</div>
+          노후 준비 완료
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS (dark) -->
+<section class="solutions-section">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:0;">
+      <div>
+        <span class="eyebrow">당연은 지금 이 순간에도</span>
+        <h2 class="section-title" style="color:white;">다양한 고객님들이<br>이용하고 있습니다.</h2>
+      </div>
+      <div class="slider-nav">
+        <button class="slider-btn" onclick="scrollSolutions(-1)">←</button>
+        <button class="slider-btn" onclick="scrollSolutions(1)">→</button>
+      </div>
+    </div>
+    <div class="solution-slider-wrap">
+      <div class="solution-slides" id="solutionSlides">
+        <div class="solution-card">
+          <div class="solution-card-img">💰</div>
+          <div class="solution-card-label">30대 직장인</div>
+          <div class="solution-card-title">노후 준비를 지금 시작하세요</div>
+          <p class="solution-card-desc">은퇴까지 30년, 지금 시작하면 AI가 복리의 마법으로 자산을 키워드립니다.</p>
+        </div>
+        <div class="solution-card">
+          <div class="solution-card-img">🏠</div>
+          <div class="solution-card-label">40대 가장</div>
+          <div class="solution-card-title">가족의 노후를 안전하게</div>
+          <p class="solution-card-desc">안정형 포트폴리오로 시장 변동에 흔들리지 않는 안정적인 노후를 설계합니다.</p>
+        </div>
+        <div class="solution-card">
+          <div class="solution-card-img">📈</div>
+          <div class="solution-card-label">50대 은퇴 준비</div>
+          <div class="solution-card-title">은퇴 전 마지막 투자 최적화</div>
+          <p class="solution-card-desc">은퇴 시기를 고려한 점진적 안전 자산 비중 확대로 은퇴 리스크를 줄입니다.</p>
+        </div>
+        <div class="solution-card">
+          <div class="solution-card-img">🎓</div>
+          <div class="solution-card-label">금융 초보</div>
+          <div class="solution-card-title">아무것도 몰라도 괜찮아요</div>
+          <p class="solution-card-desc">AI가 모든 결정을 대신해 드립니다. 승인 한 번이면 끝입니다.</p>
+        </div>
+        <div class="solution-card">
+          <div class="solution-card-img">🏢</div>
+          <div class="solution-card-label">자영업자</div>
+          <div class="solution-card-title">국민연금만으론 부족해요</div>
+          <p class="solution-card-desc">연금저축으로 세제혜택도 받고, AI로 수익률도 챙기세요.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num"><span>8.4</span>%</div>
+      <div class="stat-label">평균 연환산 수익률</div>
+      <div class="stat-source">2023년 기준</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1,200<span>+</span></div>
+      <div class="stat-label">누적 가입자 수</div>
+      <div class="stat-source">성장 중</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">0.015<span>%</span></div>
+      <div class="stat-label">자문 수수료</div>
+      <div class="stat-source">업계 최저 수준</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>4</span>주</div>
+      <div class="stat-label">AI 리밸런싱 주기</div>
+      <div class="stat-source">자동 알림 포함</div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <h2 class="faq-title">자주 묻는 질문</h2>
+    <p class="faq-sub">당연 서비스에 대해 궁금한 점을 모았습니다.</p>
+    <div class="faq-item open">
+      <button class="faq-q" onclick="toggleFaq(this)">최소 투자금은 얼마인가요?</button>
+      <div class="faq-a">AI 연금 투자 상품의 최소 투자금은 100만원이며, 최적의 분산투자 효과를 위한 권장 투자금은 500만원입니다.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">리밸런싱은 어떻게 이루어지나요?</button>
+      <div class="faq-a">4주마다 일요일에 AI가 최적 포트폴리오를 분석하고 알림을 보내드립니다. 고객님이 승인하면 다음 영업일에 주문이 체결됩니다. 리밸런싱 절차는 알림 발송 → 고객 수락 → 주문 체결 순서로 진행됩니다.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">자문 수수료는 어떻게 부과되나요?</button>
+      <div class="faq-a">자문 수수료는 연금 계좌가 아닌 별도의 수수료 수취 계좌에서 부과됩니다. 연금저축의 경우 수수료는 0.015%이며, 이벤트 기간에는 한시적으로 무료로 제공됩니다.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">언제부터 연금을 수령할 수 있나요?</button>
+      <div class="faq-a">만 55세 이상이면서 가입기간이 5년을 초과한 경우, 원하는 시기에 연금 수령이 가능합니다. 연금 수령 시 55~69세 5.5%, 70~79세 4.4%, 80세 이상 3.3%의 연금소득세가 부과됩니다.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">EMP 섀넌이란 무엇인가요?</button>
+      <div class="faq-a">딥트레이드테크놀로지스의 핵심 AI 기술로, 강화학습 원리를 활용해 현재 시장 상황에서 최적의 자산 배분을 결정합니다. 해당 기술 기반 포트폴리오는 국내 최고 금융리서치 센터에도 제공되고 있습니다.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">추가 입금도 가능한가요?</button>
+      <div class="faq-a">네 가능합니다. 입금된 금액은 정기 리밸런싱에 반영되어 매매될 예정입니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="news-section" id="news">
+  <div class="news-inner">
+    <div class="news-header">
+      <h2 class="news-title">당연 소식</h2>
+      <a href="#" class="view-all">전체보기 →</a>
+    </div>
+    <div class="news-tabs">
+      <button class="news-tab active" onclick="switchTab(this,'notice')">공지사항</button>
+      <button class="news-tab" onclick="switchTab(this,'blog')">블로그</button>
+    </div>
+    <div id="tab-notice">
+      <div class="news-list">
+        <a class="news-item" href="#">
+          <div class="news-item-type">업데이트</div>
+          <div class="news-item-body">
+            <div class="news-item-title">당연 앱 v1.2 업데이트 — 포트폴리오 분석 강화</div>
+            <div class="news-item-desc">실시간 수익률 차트와 자산 배분 시각화 기능이 추가되었습니다.</div>
+          </div>
+          <div class="news-item-date">2024. 12. 01</div>
+        </a>
+        <a class="news-item" href="#">
+          <div class="news-item-type">서비스</div>
+          <div class="news-item-body">
+            <div class="news-item-title">연말정산 세액공제 관련 안내</div>
+            <div class="news-item-desc">연금저축 납입액에 대한 세액공제 한도 및 신청 방법을 안내드립니다.</div>
+          </div>
+          <div class="news-item-date">2024. 11. 20</div>
+        </a>
+        <a class="news-item" href="#">
+          <div class="news-item-type">이벤트</div>
+          <div class="news-item-body">
+            <div class="news-item-title">신규 가입 시 3개월 수수료 무료 이벤트</div>
+            <div class="news-item-desc">2024년 12월 31일까지 신규 가입 고객에게 자문 수수료 3개월 무료 혜택을 드립니다.</div>
+          </div>
+          <div class="news-item-date">2024. 11. 01</div>
+        </a>
+      </div>
+    </div>
+    <div id="tab-blog" style="display:none;">
+      <div class="blog-grid">
+        <a class="blog-card" href="#">
+          <div class="blog-card-img">📊</div>
+          <div class="blog-card-body">
+            <div class="blog-card-tag">투자 가이드</div>
+            <div class="blog-card-title">연금저축펀드, 이렇게 시작하면 됩니다</div>
+            <div class="blog-card-date">2024. 12. 01</div>
+          </div>
+        </a>
+        <a class="blog-card" href="#">
+          <div class="blog-card-img">🤖</div>
+          <div class="blog-card-body">
+            <div class="blog-card-tag">AI 기술</div>
+            <div class="blog-card-title">EMP 섀넌 AI는 어떻게 투자 결정을 내릴까요</div>
+            <div class="blog-card-date">2024. 11. 15</div>
+          </div>
+        </a>
+        <a class="blog-card" href="#">
+          <div class="blog-card-img">💡</div>
+          <div class="blog-card-body">
+            <div class="blog-card-tag">절세 팁</div>
+            <div class="blog-card-title">연금저축으로 연간 최대 99만원 세금 돌려받기</div>
+            <div class="blog-card-date">2024. 11. 01</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <h2 class="contact-title">더 궁금한 점이 있으신가요?</h2>
+    <div class="contact-grid">
+      <a href="#" class="contact-card">
+        <span class="contact-icon">📋</span>
+        <div class="contact-label">서비스 소개서</div>
+      </a>
+      <a href="#" class="contact-card">
+        <span class="contact-icon">📱</span>
+        <div class="contact-label">앱 다운로드</div>
+      </a>
+      <a href="#faq" class="contact-card">
+        <span class="contact-icon">❓</span>
+        <div class="contact-label">FAQ</div>
+      </a>
+      <a href="#" class="contact-card">
+        <span class="contact-icon">💬</span>
+        <div class="contact-label">고객센터 문의</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-title">당연과 함께하는<br>당연한 자산관리!</h2>
+    <p class="cta-desc">앱 스토어, 플레이 스토어에서 무료로 다운로드받고<br>지금 바로 시작해보세요.</p>
+    <div class="cta-actions">
+      <a href="https://apps.apple.com/kr/app/id6738945141" class="btn-cta-white">🍎 App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.deeptrade.dtpension" class="btn-cta-white">▶ Google Play</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">당<span>연</span> — 당신의 연금</div>
+        <p class="footer-brand-desc">
+          당신의 연금을 당연하게.<br>
+          AI 기반 스마트 연금 관리 서비스 당연은<br>
+          딥트레이드테크놀로지스가 운영합니다.
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">서비스</div>
+        <ul class="footer-links">
+          <li><a href="#">서비스 소개</a></li>
+          <li><a href="#">이용 방법</a></li>
+          <li><a href="#">요금 안내</a></li>
+          <li><a href="#">앱 다운로드</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">지원</div>
+        <ul class="footer-links">
+          <li><a href="#">자주 묻는 질문</a></li>
+          <li><a href="#">고객센터</a></li>
+          <li><a href="#">공지사항</a></li>
+          <li><a href="#">블로그</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">회사</div>
+        <ul class="footer-links">
+          <li><a href="#">딥트레이드 소개</a></li>
+          <li><a href="#">채용 정보</a></li>
+          <li><a href="#">미디어</a></li>
+          <li><a href="#">파트너십</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <strong style="color:rgba(255,255,255,0.3)">딥트레이드테크놀로지스 주식회사</strong> &nbsp;|&nbsp;
+        사업자등록번호: 000-00-00000 &nbsp;|&nbsp; 투자자문업 등록번호: 제0000-000호<br>
+        © 2024 당신의 연금. All rights reserved. &nbsp;
+        <a href="#">이용약관</a> &nbsp;|&nbsp;
+        <a href="#">개인정보처리방침</a> &nbsp;|&nbsp;
+        <a href="#">투자 유의사항</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== HERO SLIDER =====
+var heroIdx = 0;
+var heroTotal = 3;
+var heroAuto;
+
+function updateHero() {
+  document.getElementById('heroSlides').style.transform = 'translateX(-' + (heroIdx * 100) + '%)';
+  document.querySelectorAll('.hero-dot').forEach(function(d, i) {
+    d.classList.toggle('active', i === heroIdx);
+  });
+}
+function slideHero(dir) {
+  heroIdx = (heroIdx + dir + heroTotal) % heroTotal;
+  updateHero();
+  resetAuto();
+}
+function goSlide(idx) {
+  heroIdx = idx;
+  updateHero();
+  resetAuto();
+}
+function startAuto() {
+  heroAuto = setInterval(function() { slideHero(1); }, 5000);
+}
+function resetAuto() {
+  clearInterval(heroAuto); startAuto();
+}
+startAuto();
+
+// ===== SOLUTION SLIDER =====
+var solEl = document.getElementById('solutionSlides');
+function scrollSolutions(dir) {
+  solEl.scrollLeft += dir * 280;
+}
+
+// ===== FAQ =====
+function toggleFaq(btn) {
+  btn.parentElement.classList.toggle('open');
+}
+
+// ===== NEWS TABS =====
+function switchTab(btn, tab) {
+  document.querySelectorAll('.news-tab').forEach(function(t) { t.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('tab-notice').style.display = tab === 'notice' ? 'block' : 'none';
+  document.getElementById('tab-blog').style.display = tab === 'blog' ? 'block' : 'none';
+}
+
+// ===== NAV SCROLL =====
+window.addEventListener('scroll', function() {
+  document.querySelector('nav').style.borderBottomColor =
+    window.scrollY > 10 ? 'var(--gray-200)' : 'transparent';
+});
+</script>
+</body>
+</html>

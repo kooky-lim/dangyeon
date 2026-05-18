@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  ::selection {
+    background: rgba(30, 201, 175, 0.18);
+    color: #0D0D0D;
+  }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Feature card hover */
+.feature-card {
+  border: 1px solid #F3F4F6;
+  background: #fff;
+  transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
+}
+.feature-card:hover {
+  border-color: rgba(30, 201, 175, 0.25);
+  background: #F9FFFE;
+  box-shadow: 0 0 0 1px rgba(30, 201, 175, 0.15), 0 8px 32px rgba(30, 201, 175, 0.06);
+}
+
+/* Slider: progress bar fill animation */
+@keyframes sliderProgress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.slider-progress-bar {
+  transform-origin: left center;
+  animation: sliderProgress 5s linear forwards;
+}
+
+/* Slider: content fade+slide in */
+@keyframes slideContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.slide-content-enter {
+  animation: slideContentIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Slider: visual fade+scale in */
+@keyframes slideVisualIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.slide-visual-enter {
+  animation: slideVisualIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+@media (max-width: 768px) {
+  .animate-marquee {
+    animation-duration: 28s;
+  }
+}
